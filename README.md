@@ -62,7 +62,7 @@ The goal of data mining is to
 3. Analyze cross-category co-occurrence if some papers relate to several areas
 
 #### Data Mining Success Criteria
-... will be chosen after the deeper research of available methods, because here we need to difine technical characteristics...
+... will be chosen after the deeper research of available methods, because here we need to define technical characteristics...
 
 ### Project Plan
 
