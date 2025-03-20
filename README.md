@@ -76,7 +76,7 @@ However, if we take a look at the amount of papers that were updated at the earl
 
 Such amount of updates at the 23rd of May 2007 may mean that every research paper that has "Update date" = 2007-05-23 were published/updated no later than the 23rd of May 2007:
 
-[dates_dist](materials/images/dates_dist.png)
+[dates_dist](https://github.com/RelentlessViper/DM_Project/blob/main/materials/images/dates_dist.png)
 
 As we can see from the image above "peaks" present among different dates:
 - As we discussed earlier, the first one may mean that quite a lot of publications were published/updated before the 23rd of May 2007;
