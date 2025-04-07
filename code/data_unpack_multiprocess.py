@@ -33,7 +33,7 @@ def read_in_chunks(file_path, chunk_size=1000):
             yield chunk
 
 def main():
-    file_path = "/home/viper/Data_science/DM_Project/ignore_folder/data/arxiv-metadata-oai-snapshot.json"
+    file_path = "../ignore_folder/data/arxiv-metadata-oai-snapshot.json"
 
     # Adjust based on RAM amount
     chunk_size = 1000
@@ -49,7 +49,7 @@ def main():
 
     # Convert the list of dictionaries to a dataframe
     docs_df = pd.DataFrame(all_data)
-    docs_df.to_csv("/home/viper/Data_science/DM_Project/ignore_folder/data/docs_df.csv", index=False)
+    docs_df.to_csv("../ignore_folder/data/docs_df.csv", index=False)
 
 if __name__ == "__main__":
     main()
