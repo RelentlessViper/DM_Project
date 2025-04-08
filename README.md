@@ -7,9 +7,10 @@ The dataset can be found [here](https://www.kaggle.com/datasets/Cornell-Universi
   - [Objectives](#business-objectives)  
   - [Assess Situation](#assess-situation)  
 - [Data Understanding](#data-understanding)  
-  - [Exploration](#data-exploration)  
+  - [Exploration](#data-exploration)
+  - [Description](#data-description) 
   - [Quality](#data-quality)  
-- [Project Plan](#project-plan)
+- [Data Preparation](#data-preparation)
 
 
 ## Business Understanding
@@ -189,3 +190,17 @@ This dataset can be used for the following tasks:
 - Author Disambiguation and Collaboration Networks;
 - Automated Paper Categorization;
 - Research Gap Identification.
+
+
+## Data Preparation
+#### Select columns
+In relevance with our business goals and by extension data mining goals, we have decided to use the columns: `Title`, `Abstract` and `Update date`. The `title` and `abstract` columns will be used to generate the embedding, which will will be used to cluster the paper by topics. The `Update date` column will be used to analyze the clusters across time.
+
+#### Clean data
+As mentioned in the [data exploration](#data-exploration), the dataset doesn't have any vacant cells! 
+
+#### construct data
+During the modelling phase, we concatenate the `Title` and `Abstract` column and the new text string is what we feed into the embedding model. The team decided to do the concatenation on the fly, as this makes it easier to work with the data.
+
+#### format data
+As mentioned in the [data description](#data-description), the original data is in `.json` format and we convert it to `.csv` format. This makes reading, analysing, modelling and working with the data much easier.
