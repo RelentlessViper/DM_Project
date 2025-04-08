@@ -2,6 +2,16 @@
 
 The dataset can be found [here](https://www.kaggle.com/datasets/Cornell-University/arxiv/data).
 
+## Table of Contents  
+- [Business Understanding](#business-understanding)  
+  - [Objectives](#business-objectives)  
+  - [Assess Situation](#assess-situation)  
+- [Data Understanding](#data-understanding)  
+  - [Exploration](#data-exploration)  
+  - [Quality](#data-quality)  
+- [Project Plan](#project-plan)
+
+
 ## Business Understanding
 
 ### Business Objectives
