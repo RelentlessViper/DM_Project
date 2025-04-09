@@ -51,15 +51,25 @@ The project requires a massive dataset with papers and comprehensible columns, a
 The project is susceptible to risks such as a lack of computing resources, financial constraints, and lack of time. Also, there is a risk that researchers will not be interested in rare topics and will refuse to conduct them on their own. 
 
 #### Costs and Benefits
-As we already mentioned, for the data mining problem we need data and computational resources. The obtained dataset should be massive, thus we need about 5GB of SSD for its storage. Furthermore, effective model training requires external GPU powers, available RAM, and space for saving model weights. Yandex Cloud allows one to rent these tools, so we can reserve as much power as we need. Here we can conclude that SSD, RAM, and GPU are what we look for, and compute the project’s cost per month: 11,91\*10 + 0.28\*24\*30 + 1,05\*24\*30 = 1076,7₽ where 11.91, 0.28, and 1.05 monthly fee for SSD (5Gb for data + 5Gb for weights), hourly fee for RAM and hourly fee for GPU correspondingly. As a benefit, we will get more papers with rare topics and a bigger science boost.
+As we already mentioned, for the data mining problem we need data and computational resources. The obtained dataset should be massive, thus we need about 5GB of SSD for its storage. Furthermore, effective model training requires external GPU powers, available RAM, and space for saving model weights. Yandex Cloud allows one to rent these tools, so we can reserve as much power as we need. Here we can conclude that SSD, RAM, and GPU are what we look for, and compute the project’s cost per month: 11,91\*10 + 0.28\*24\*30 + 1,05\*24\*30 = 1076,7₽ where 11.91, 0.28, and 1.05 monthly fee for SSD (5Gb for data + 5Gb for weights), hourly fee for RAM and hourly fee for GPU correspondingly. 
+
+As a benefit, we will get:
+- More papers with rare topics: identified underexplored areas help researchers focus on high-impact and novel topics instead of saturated fields.
+- Science boost:
+    - Minimized duplicated efforts by flagging overlapping studies early -> focus on small topics.
+    - Highlighted interdisciplinary opportunities for cross-domain partnerships.
+- Absense of human factor: subjective expert opinions will be replaced with quantifiable and automated gap metrics.
+- Money is saved: funding on overstudied topics are reduced.
 
 ### Determine Data Mining Goals
 
 #### Data Mining Goals
-The goal of data mining is to 
-1. Cluster papers into topics using ‘abstract’ and ‘title’ NLP embeddings
-2. Find the underrepresented clusters
-3. Analyze cross-category co-occurrence if some papers relate to several areas
+The goal of data mining is to:
+1. Cluster papers into topics using ‘abstract’ and ‘title’ NLP embeddings and
+2. Find the underrepresented clusters. This will bring us and our customers to a clear understanding of niche areas (smaller clusters -> smaller area's study).
+3. Analyze cross-category co-occurrence if some papers relate to several areas. Rare category pairs suggest untapped intersections while frequent pairs combinations can indicate the area "overflow".
+
+All these points lead to informative outcomes about underrepresented fields, which can be researched more. According to our Business Objectives, this will motivate explorers to become pioneers in those topics.
 
 #### Data Mining Success Criteria
 ... will be chosen after the deeper research of available methods, because here we need to define technical characteristics...
