@@ -1,0 +1,19 @@
+# data + embedding args args
+file_path: "../../ignore_folder/data/docs_df.csv"
+sample_size: 1000  # Optional, set to null for full dataset
+batch_size: 32
+
+# embedding args
+load_from_local: true
+device: "cpu"
+output_dir: "outputs"
+
+# model args
+model_name: "bert-base-uncased"
+
+# clustering args
+clustering_algorithm: "hdbscan"  # Options: kmeans, dbscan, hdbscan
+n_clusters: 10
+eps: 0.3  # For DBSCAN
+min_samples: 15  # For DBSCAN
+reduce_embed_dim: true
