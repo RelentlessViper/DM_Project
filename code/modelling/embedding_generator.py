@@ -6,9 +6,9 @@ from tqdm import tqdm
 from typing import List, Tuple
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-def get_local_embed_path(output_dir: str) -> Tuple[str, str]:
-    embed_dir = output_dir + "/embeddings"
-    embed_path = f"{embed_dir}/embeddings.npy"
+def get_local_embed_path(config) -> Tuple[str, str]:
+    embed_dir = config["output_dir"] + "/embeddings"
+    embed_path = f"{embed_dir}/embeddings_{config['sample_size']}.npy"
     return embed_dir, embed_path
 
 def generate_or_load_embeddings(
@@ -17,7 +17,7 @@ def generate_or_load_embeddings(
     texts: List[str],  
     config  
 ) -> np.ndarray:
-    embed_dir, embed_path = get_local_embed_path(config["output_dir"])
+    embed_dir, embed_path = get_local_embed_path(config)
 
     if config["load_from_local"]:
         assert os.path.exists(embed_path), "If loading embeddings from local dir, embeddings should exist in a local dir"
