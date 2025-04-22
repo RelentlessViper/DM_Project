@@ -39,8 +39,8 @@ def load_best_hdbscan_config(config_dir: str = "") -> Dict[str, Any]:
             return json.load(f)
     except FileNotFoundError:
         raise FileNotFoundError(
-            f"HDBSCAN config not found at {config_path}. "
-            "Run tuning first or check path."
+            f"""HDBSCAN config not found at {config_path}. 
+            Run tuning first or check path."""
         )
     except json.JSONDecodeError:
         raise ValueError("Invalid JSON format in HDBSCAN config file")
