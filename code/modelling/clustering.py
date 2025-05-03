@@ -34,11 +34,7 @@ def get_hdbscan_param_grid(embeddings_shape):
     return base_grid
 
 def generate_hdbscan_configs(embeddings_shape):
-    return list(ParameterSampler(
-        get_hdbscan_param_grid(embeddings_shape), 
-        n_iter=80000,
-        random_state=42
-    ))
+    return list(ParameterGrid(get_hdbscan_param_grid(embeddings_shape)))
 
 def reduce_embedding_dim(embeddings: np.ndarray, n_components: int) -> np.ndarray:
     return UMAP(n_components=n_components, 
