@@ -11,8 +11,10 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from utils.loader_utils import load_data, load_model_tokenizer
 
 def get_local_embed_path(config) -> Tuple[str, str]:
+    """Returns the file path of the embedding array to be used in the current session. """
     embed_dir = config["output_dir"] + "/embeddings"
-    embed_path = f"{embed_dir}/embeddings_{config['sample_size']}.npy"
+    sample_size = config['sample_size'] if config['sample_size'] else ""
+    embed_path = f"{embed_dir}/embeddings_{sample_size}.npy"
     return embed_dir, embed_path
 
 def last_token_pool(
