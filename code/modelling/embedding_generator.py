@@ -7,6 +7,7 @@ import torch.nn.functional as F
 from tqdm import tqdm
 from torch import Tensor
 from typing import List, Tuple
+from sentence_transformers import SentenceTransformer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from utils.loader_utils import load_data, load_model_tokenizer
 
@@ -35,26 +36,33 @@ def generate_or_load_embeddings(
     texts: List[str],  
     config  
 ) -> np.ndarray:
+    # Get embedding directory and path from config
     embed_dir, embed_path = get_local_embed_path(config)
 
+    # Load embeddings from local file if load_from_local is true 
     if config["load_from_local"]:
-        assert os.path.exists(embed_path), "If loading embeddings from local dir, embeddings should exist in a local dir"
+        assert os.path.exists(embed_path), "If loading embeddings from local dir, embeddings should exist in a local dir and load from local should be true"
         print("Loading embeddings from", embed_path)
         return np.load(embed_path)
 
-    embeddings = []
-    for i in tqdm(range(0, len(texts), config['batch_size']), desc="Embedding"):
-        batch_input = texts[i:i + config['batch_size']]
-        inputs = tokenizer(batch_input, return_tensors='pt', padding=True, truncation=True, 
-                          max_length=8192).to(config["device"])
-        with torch.no_grad():
-            outputs = model(**inputs)
-            batch_embeddings = last_token_pool(outputs.last_hidden_state, inputs['attention_mask'])
-            norm_batch_embeddings = F.normalize(batch_embeddings, p=2, dim=-1)
-            embeddings.append(norm_batch_embeddings.cpu().numpy())
-
-    embeddings = np.vstack(embeddings)
+    # Generate embeddings
+    if isinstance(model, SentenceTransformer):
+        embeddings = model.encode(texts, batch_size=config['batch_size'], show_progress_bar=True)
+    else:
+        embeddings = []
+        for i in tqdm(range(0, len(texts), config['batch_size']), desc="Embedding"):
+            batch_input = texts[i:i + config['batch_size']]
+            inputs = tokenizer(batch_input, return_tensors='pt', padding=True, truncation=True, 
+                              max_length=8192).to(config["device"])
+            with torch.no_grad():
+                outputs = model(**inputs)
+                batch_embeddings = last_token_pool(outputs.last_hidden_state, inputs['attention_mask'])
+                norm_batch_embeddings = F.normalize(batch_embeddings, p=2, dim=-1)
+                embeddings.append(norm_batch_embeddings.cpu().numpy())
     
+        embeddings = np.vstack(embeddings)
+
+    # If save to local is set, save the embeddings to local dir
     if config['save_to_local']:
         os.makedirs(embed_dir, exist_ok=True)
         np.save(embed_path, embeddings)
@@ -74,8 +82,6 @@ def main(config_path: str ="config.yaml"):
     model, tokenizer = load_model_tokenizer(config["model_name"], device=config["device"])
 
     assert model is not None
-    assert tokenizer is not None
-    config["save_to_local"] = True
     
     print("Generating embeddings")
     embeddings = generate_or_load_embeddings(model, tokenizer, df['text'].tolist(), config)
