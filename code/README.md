@@ -1,3 +1,6 @@
+## Notes
+`modelling/outputs/100K_sample` returns the results reported in our report.
+
 ## Brief repository structure
 ### In the `modelling` dir
 - `embedding_generator.py` script to generate embeddings for the files
