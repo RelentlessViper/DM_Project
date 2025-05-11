@@ -1,15 +1,18 @@
 # data + embedding args args
 file_path: "../../ignore_folder/data/docs_df.csv"
-sample_size: 1000  # Optional, set to null for full dataset
-batch_size: 32
+sample_file_path: "../../ignore_folder/data/sample_data_1000.csv"
+sample_size: 1000   # Optional, set to null for full dataset
+sample: true
+batch_size: 256
 
 # embedding args
-load_from_local: true
-device: "cpu"
+load_from_local: false
+save_to_local: true
+device: "cuda:3"
 output_dir: "outputs"
 
 # model args
-model_name: "bert-base-uncased"
+model_name: "sentence-transformers/all-MiniLM-L6-v2"
 
 # clustering args
 clustering_algorithm: "hdbscan"  # Options: kmeans, dbscan, hdbscan
