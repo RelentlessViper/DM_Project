@@ -4,6 +4,7 @@ import pandas as pd
 
 from datetime import datetime
 from typing import Optional, Dict, Any
+from sentence_transformers import SentenceTransformer
 from transformers import BertTokenizer, BertModel, AutoModelForCausalLM, AutoTokenizer, AutoModel
 
 def load_data(file_path: str, sample_size: Optional[int] = None) -> pd.DataFrame:
@@ -25,9 +26,14 @@ def load_model_tokenizer(model_name: str, device: str) -> AutoModelForCausalLM:
     if "bert" in model_name:
         tokenizer = BertTokenizer.from_pretrained(model_name)
         model = BertModel.from_pretrained(model_name).to(device)
-    else:
+    elif "gte" in model_name.lower() or "qwen" in model_name.lower():
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModel.from_pretrained(model_name).to(device)
+    elif "sentence-transformers" in model_name.lower():
+        model = SentenceTransformer(model_name).to(device)
+        return model, None 
+    else:
+        raise ValueError(f"Unsupported model name: {model_name}")
         
     # Set model to eval mode
     model.eval()
