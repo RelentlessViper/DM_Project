@@ -2,6 +2,9 @@
 `modelling/outputs/100K_sample` returns the results reported in our report.
 
 ## Brief repository structure
+
+### `CRISP_DM_Report.pdf` - final report.
+
 ### `modelling`:
 - `embedding_generator.py` script to generate embeddings for the files;
 - `tune_hdbscan.py` runs hyperparameter search on the embeddings;
@@ -11,8 +14,7 @@
 - `config.yaml` sets the necessary config for the pipeline.
 
 ### `EDA`:
-- `eda.ipynb` contains the basic EDA with general information acquired;
-- `additional_eda.ipynb` contains the EDA with advanced plots.
+- `EDA.ipynb` contains the EDA with general and advanced data insights acquired.
 
 ### `file_unpacking`:
 - `data_unpack.py` contains data unpacking techniques for large files;
